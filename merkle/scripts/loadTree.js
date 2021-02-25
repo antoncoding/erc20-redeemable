@@ -10,7 +10,8 @@ const loadTree = (utils, fileName) => {
   let leaf;
 
   Object.keys(balances).forEach(address => {
-    balance = utils.toWei(balances[address]);
+    // USDC has 6 decimals instead of 18
+    balance = utils.toWei(balances[address], "mwei");
     leaf = utils.soliditySha3(address, balance);
     elements.push(leaf);
   });

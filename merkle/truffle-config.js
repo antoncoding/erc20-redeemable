@@ -25,7 +25,7 @@ const fs = require("fs");
 const ganacheMnemonic = fs.readFileSync("../.secret", "utf-8");
 const infuraKey = process.env.INFURA_KEY;
 const etherscanKey = process.env.ETHERSCAN_API;
-console.log(`etherscanKey`, etherscanKey);
+
 module.exports = {
   networks: {
     development: {

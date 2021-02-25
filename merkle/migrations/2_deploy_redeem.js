@@ -8,11 +8,11 @@ module.exports = (deployer, network, accounts) => {
     await deployer.deploy(TToken, "Test USDC", "opyn USDC", 6);
     const token = await TToken.deployed();
     console.log(`admin`, admin);
-    await token.mint(admin, utils.toWei("1"));
+    await token.mint(admin, "10000000000"); // 10000 USDC
 
     await deployer.deploy(Redeem, token.address);
     const redeem = await Redeem.deployed();
 
-    await token.transfer(redeem.address, utils.toWei("0.2"), { from: admin });
+    await token.transfer(redeem.address, "200000000", { from: admin });
   });
 };

@@ -15,13 +15,16 @@ module.exports = function(callback) {
   const rawdata = fs.readFileSync(process.argv[4]);
   const balances = JSON.parse(rawdata);
   const address = process.argv[5];
+  if (address === undefined) throw Error("Missing address");
 
   const claimBalance = balances[address];
+
   console.log("Tree:\t", root);
   console.log("Account:\t", address);
   console.log("Balance:\t", claimBalance);
   const proof = merkleTree.getHexProof(
-    utils.soliditySha3(address, utils.toWei(claimBalance))
+    // use mwei cause USDC has 6 decimals
+    utils.soliditySha3(address, utils.toWei(claimBalance, "mwei"))
   );
   console.log("Proof:\t", proof);
 
@@ -29,7 +32,9 @@ module.exports = function(callback) {
   console.log("let redeem\nMerkleRedeem.deployed().then(i => redeem = i);");
   console.log("\nlet weekNum = 1 // adjust accordingly");
   console.log("\nlet proof = " + JSON.stringify(proof));
-  console.log('\nlet claimBalance = web3.utils.toWei("' + claimBalance + '")');
+  console.log(
+    '\nlet claimBalance = web3.utils.toWei("' + claimBalance + '", "mwei")'
+  );
 
   console.log(
     '\nawait redeem.verifyClaim("' +
