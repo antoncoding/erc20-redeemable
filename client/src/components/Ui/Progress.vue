@@ -4,7 +4,7 @@
       v-for="(bar, i) in bars"
       :key="i"
       :style="`width: ${parseInt((100 / max) * bar)}%;`"
-      class="bg-blue"
+      class="bg-green"
     />
   </span>
 </template>

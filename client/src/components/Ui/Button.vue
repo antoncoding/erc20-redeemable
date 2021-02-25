@@ -34,13 +34,13 @@ export default {
   font-size: 18px;
 
   &.button--submit {
-    background-color: $bg-blue;
-    border: 1px solid $bg-blue;
+    background-color: $bg-green;
+    border: 1px solid $bg-green;
 
     &:hover {
       color: $white;
-      background-color: $bg-blue;
-      border: 1px solid $bg-blue;
+      background-color: $bg-green;
+      border: 1px solid $bg-green;
     }
 
     &:disabled {
