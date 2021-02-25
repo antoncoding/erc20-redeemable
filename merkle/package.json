@@ -29,8 +29,10 @@
     "@openzeppelin/contracts": "^3.1.0",
     "@truffle/hdwallet-provider": "^1.0.29",
     "bn.js": "^4.11.0",
+    "dotenv": "^8.2.0",
     "ethereumjs-util": "^7.0.4",
     "truffle": "^5.1.39",
+    "truffle-plugin-verify": "^0.5.4",
     "web3-utils": "^1.2.11"
   },
   "scripts": {

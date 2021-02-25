@@ -18,32 +18,14 @@
  *
  */
 
+require("dotenv").config();
+
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const infuraKey = process.env.INFURA_KEY;
 const fs = require("fs");
-const path = require("path");
-const ganacheMnemonic =
-  "album wire record stuff abandon mesh museum piece bean allow refuse below";
-
-function walletProvider(filepath) {
-  if (fs.existsSync(filepath)) {
-    return () => {
-      const file = fs.readFileSync(path.join(__dirname, filepath), "utf8");
-      let { mnemonic, providerUrl } = JSON.parse(file);
-      var HDWalletProvider = require("@truffle/hdwallet-provider");
-
-      return new HDWalletProvider(mnemonic, providerUrl, 0, 3);
-    };
-  } else {
-    return () => {
-      throw "uh oh, you don't have that mnemonic";
-    };
-  }
-}
-
-const gas = 6250000;
-const gasPrice = 3000000000;
-
+const ganacheMnemonic = fs.readFileSync("../.secret", "utf-8");
+const infuraKey = process.env.INFURA_KEY;
+const etherscanKey = process.env.ETHERSCAN_API;
+console.log(`etherscanKey`, etherscanKey);
 module.exports = {
   networks: {
     development: {
@@ -55,18 +37,20 @@ module.exports = {
     dockerGanache: {
       provider: new HDWalletProvider(
         ganacheMnemonic,
-        "http://ganache:8545",
+        "http://localhost:8545",
         0,
         3
       ),
       network_id: "*" // Any network (default: none)
     },
     kovan: {
-      confirmations: 2,
-      provider: walletProvider("secrets_kovan.json"),
+      provider: () => {
+        return new HDWalletProvider(
+          ganacheMnemonic,
+          `https://kovan.infura.io/v3/${infuraKey}`
+        );
+      },
       network_id: 42
-      //gas,
-      //gasPrice
     }
   },
   mocha: {
@@ -80,5 +64,9 @@ module.exports = {
     solc: {
       version: "0.6.8" // Fetch exact version from solc-bin (default: truffle's version)
     }
+  },
+  plugins: ["truffle-plugin-verify"],
+  api_keys: {
+    etherscan: etherscanKey
   }
 };
