@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import config from '@/config';
 import ipfs from '@/helpers/ipfs';
 import pkg from '@/../package.json';
+import { request } from 'http';
 
 export function shorten(str = '') {
   return `${str.slice(0, 6)}...${str.slice(str.length - 4)}`;
@@ -76,14 +77,8 @@ export function sleep(ms) {
 }
 
 export async function getSnapshot() {
-  const networkStr = config.chainId === 1 ? '' : '-kovan';
-  return (
-    (await ipfs.get(
-      `balancer-team-bucket.storage.fleek.co/balancer-claim${networkStr}/snapshot`,
-      // `antoncoding-team-bucket.storage.fleek.co/reward${networkStr}/snapshot`,
-      'ipns'
-    )) || {}
-  );
+  const r = await(await fetch(`https://raw.githubusercontent.com/opynfinance/opyn-reward/master/snapshot`)).json()
+  return r
 }
 
 export async function getReports(snapshot, weeks) {

@@ -33,7 +33,7 @@ module.exports = function(callback) {
   console.log("\nlet weekNum = 1 // adjust accordingly");
   console.log("\nlet proof = " + JSON.stringify(proof));
   console.log(
-    '\nlet claimBalance = web3.utils.toWei("' + claimBalance + '", "mwei")'
+    '\nlet claimBalance = web3.utils.toWei("' + claimBalance + '", ' + '"mwei")'
   );
 
   console.log(

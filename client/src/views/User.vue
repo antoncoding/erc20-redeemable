@@ -51,7 +51,7 @@
                 v-if="Object.keys(unclaimed).length === 0"
                 class="p-4 m-0 d-block"
               >
-                There isn't any pending BAL here.
+                There isn't any pending USDC here.
               </p>
             </div>
           </Block>
@@ -114,7 +114,7 @@ import { getAddress } from '@ethersproject/address';
 export default {
   data() {
     return {
-      address: getAddress(this.$router.currentRoute.params.address),
+      address: getAddress(this.$router.currentRoute.params.address).toLowerCase(),
       loading: false,
       loaded: false,
       submitLoading: false,
@@ -124,6 +124,8 @@ export default {
   },
   computed: {
     unclaimed() {
+      console.log(`this.address`, this.address)
+      console.log(`this.app.reports`, Object.entries(this.app.reports).map(report => report[1]))
       return Object.fromEntries(
         Object.entries(this.app.reports)
           .map(report => [report[0], report[1][this.address] || 0])
