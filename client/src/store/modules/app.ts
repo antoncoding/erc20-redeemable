@@ -51,7 +51,7 @@ const actions = {
       latestWeek = result[0][0];
       const latestWeekIpfsHash = result[0][1];
       latestReport = await ipfs.get(latestWeekIpfsHash);
-      console.log(`latestReport`, latestReport)
+      console.log(`latestReport`, latestReport);
       reports[latestWeek] = latestReport;
     }
     commit('SET', {
@@ -77,10 +77,10 @@ const actions = {
       console.log(week, merkleTree.getHexRoot());
 
       const proof = merkleTree.getHexProof(
-        soliditySha3(address, toWei(claimBalance, "mwei"))
+        soliditySha3(address, toWei(claimBalance, 'mwei'))
       );
       totalClaim += parseFloat(claimBalance);
-      return [parseInt(week), toWei(claimBalance, "mwei"), proof];
+      return [parseInt(week), toWei(claimBalance, 'mwei'), proof];
     });
     try {
       const params = [
@@ -119,6 +119,7 @@ const actions = {
     }
   },
   loadReports: async ({ commit }, weeks) => {
+    console.log(`loadReports`);
     const reports = await getReports(state.snapshot, weeks);
     commit('LOAD_REPORTS_SUCCESS', reports);
   }

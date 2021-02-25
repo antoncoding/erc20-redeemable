@@ -80,6 +80,7 @@ export async function getSnapshot() {
   return (
     (await ipfs.get(
       `balancer-team-bucket.storage.fleek.co/balancer-claim${networkStr}/snapshot`,
+      // `antoncoding-team-bucket.storage.fleek.co/reward${networkStr}/snapshot`,
       'ipns'
     )) || {}
   );

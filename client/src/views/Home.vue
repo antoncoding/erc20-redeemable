@@ -2,7 +2,7 @@
   <div class="pt-2">
     <Container :slim="true">
       <Block class="text-center py-4">
-        <h1 class="mb-2">Claim USDC</h1>
+        <h1 class="mb-2">Claim USDC Reward</h1>
         <form
           @submit.prevent="handleSubmit"
           style="max-width: 460px;"
