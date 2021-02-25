@@ -77,10 +77,10 @@ const actions = {
       console.log(week, merkleTree.getHexRoot());
 
       const proof = merkleTree.getHexProof(
-        soliditySha3(address, toWei(claimBalance))
+        soliditySha3(address, toWei(claimBalance, "mwei"))
       );
       totalClaim += parseFloat(claimBalance);
-      return [parseInt(week), toWei(claimBalance), proof];
+      return [parseInt(week), toWei(claimBalance, "mwei"), proof];
     });
     try {
       const params = [

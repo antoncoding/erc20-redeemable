@@ -6,9 +6,12 @@ if (domainName === 'vote.balancer.finance')
   defaultRestApi = 'https://vote.balancer.finance';
 const restApi = process.env.VUE_APP_REST_API || defaultRestApi;
 
+console.log(`restApi`, restApi)
+
 class Client {
   request(command, body?) {
     const url = `${restApi}/api/${command}`;
+    console.log(`client final url`, url)
     let init;
     if (body) {
       init = {

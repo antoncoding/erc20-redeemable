@@ -144,7 +144,7 @@ export class MerkleTree {
 export function loadTree(balances) {
   const elements = [];
   Object.keys(balances).forEach(address => {
-    const balance = toWei(balances[address]);
+    const balance = toWei(balances[address], "mwei");
     const leaf = soliditySha3(address, balance);
     elements.push(leaf);
   });
