@@ -33,16 +33,9 @@
                 :style="i === 0 && 'border: 0 !important;'"
               >
                 <div class="flex-auto">
-                  <a
-                    :href="
-                      `https://github.com/balancer-labs/bal-mining-scripts/blob/master/reports/${_week(
-                        week
-                      )}/_totals.json`
-                    "
-                    target="_blank"
-                  >
+                  <a>
                     Week {{ $n(_week(week)) }}
-                    <Icon name="external-link" class="ml-1" />
+                    <!-- <Icon name="external-link" class="ml-1" /> -->
                   </a>
                 </div>
                 <div>{{ $n(dist) }} USDC</div>
@@ -68,16 +61,8 @@
                 :style="i === 0 && 'border: 0 !important;'"
               >
                 <div class="flex-auto">
-                  <a
-                    :href="
-                      `https://github.com/balancer-labs/bal-mining-scripts/blob/master/reports/${_week(
-                        week
-                      )}/_totals.json`
-                    "
-                    target="_blank"
-                  >
+                  <a>
                     Week {{ $n(_week(week)) }}
-                    <Icon name="external-link" class="ml-1" />
                   </a>
                 </div>
                 <div>{{ $n(dist) }} USDC</div>
