@@ -31,7 +31,6 @@ module.exports = async function(callback) {
   await token.approve(redeem.address, allocationAmount);
   console.log(`Approve USDC done`);
 
-  console.log(`MerkleRedeem deployed`);
   await redeem.seedAllocations(weekNum, root, allocationAmount);
   console.log("seedAllocations done");
 
