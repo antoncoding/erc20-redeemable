@@ -51,6 +51,17 @@ module.exports = {
         );
       },
       network_id: 42
+    },
+    mainnet: {
+      provider: () => {
+        return new HDWalletProvider(
+          ganacheMnemonic,
+          `https://mainnet.infura.io/v3/${infuraKey}`
+        );
+      },
+      network_id: 1,
+      gasPrice: 80000000000, // 80 gwei
+      gas: 3000000
     }
   },
   mocha: {
