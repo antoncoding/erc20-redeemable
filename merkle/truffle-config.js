@@ -28,21 +28,6 @@ const etherscanKey = process.env.ETHERSCAN_API;
 
 module.exports = {
   networks: {
-    // development: {
-    //   //host: "127.0.0.1", // Localhost (default: none)
-    //   host: "localhost", // Localhost (default: none)
-    //   port: 8545, // Standard Ethereum port (default: none)
-    //   network_id: "*" // Any network (default: none)
-    // },
-    // dockerGanache: {
-    //   provider: new HDWalletProvider(
-    //     ganacheMnemonic,
-    //     "http://localhost:8545",
-    //     0,
-    //     3
-    //   ),
-    //   network_id: "*" // Any network (default: none)
-    // },
     kovan: {
       provider: () => {
         return new HDWalletProvider(
