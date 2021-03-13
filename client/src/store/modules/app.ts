@@ -79,6 +79,7 @@ const actions = {
       const proof = merkleTree.getHexProof(
         soliditySha3(address, toWei(claimBalance, 'mwei'))
       );
+      console.log(`proof`, proof)
       totalClaim += parseFloat(claimBalance);
       return [parseInt(week), toWei(claimBalance, 'mwei'), proof];
     });

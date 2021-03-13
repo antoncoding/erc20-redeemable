@@ -77,8 +77,10 @@ export function sleep(ms) {
 }
 
 export async function getSnapshot() {
-  const network = config.network === 'homestead' ? '' : `-${config.network}`;
+  const network = `-${config.network}`;
   const r = await(await fetch(`https://raw.githubusercontent.com/opynfinance/opyn-reward/master/snapshot${network}`)).json()
+  console.log(``)
+  console.log(`r`, r)
   return r
 }
 

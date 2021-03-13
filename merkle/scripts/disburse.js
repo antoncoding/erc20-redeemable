@@ -2,8 +2,8 @@
 // npm run disburse -- /home/greg/erc20-redeemable/merkle/test/10_totals.json 10622281 1 1000 --network kovan
 
 // kovan
-const tokenAddress = "0xb8accc037ea179bfcd403d92fafcb2c467c434c6";
-const redeemAddress = "0xA9097F6d431C215bb17EB1Dba234aE34e8b6FC5b";
+// const tokenAddress = "0xb8accc037ea179bfcd403d92fafcb2c467c434c6";
+// const redeemAddress = "0xA9097F6d431C215bb17EB1Dba234aE34e8b6FC5b";
 
 // mainnet
 const tokenAddress = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
@@ -40,7 +40,10 @@ module.exports = async function(callback, address) {
 
   // await token.approve(redeem.address, allocationAmount);
   // console.log(`Approve USDC done`);
-
+  console.log(`weekNum`, weekNum);
+  console.log(`root`, root);
+  console.log(`allocationAmount`, allocationAmount);
+  console.log(`waiting now...`);
   await redeem.seedAllocations(weekNum, root, allocationAmount);
   console.log("seedAllocations done");
 
