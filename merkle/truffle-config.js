@@ -45,8 +45,8 @@ module.exports = {
         );
       },
       network_id: 1,
-      gasPrice: 200000000000, // 80 gwei
-      gas: 3000000
+      gasPrice: 80000000000, // 80 gwei
+      gas: 100000
     }
   },
   mocha: {

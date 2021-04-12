@@ -16,36 +16,33 @@ const { utils } = web3;
 const { loadTree } = require("./loadTree");
 
 module.exports = async function(callback, address) {
-  console.log(`address`, address);
-  console.log("File Path Arg (must be absolute):", process.argv[4]);
+  try {
+    console.log(`address`, address);
+    console.log("File Path Arg (must be absolute):", process.argv[4]);
 
-  const merkleTree = loadTree(utils, process.argv[4]);
-  const blockNum = process.argv[5];
-  const weekNum = process.argv[6];
+    const merkleTree = loadTree(utils, process.argv[4]);
+    const weekNum = process.argv[5];
 
-  const block = await web3.eth.getBlock(blockNum);
-  const approveAmount = parseInt(process.argv[7]);
-  console.log("Block:\t", blockNum, block.hash, block.timestamp);
+    const approveAmount = parseInt(process.argv[6]);
 
-  const root = merkleTree.getHexRoot();
-  console.log("Tree root:\t", root);
+    const root = merkleTree.getHexRoot();
+    console.log("Tree root:\t", root);
 
-  // const token = await Token.at(tokenAddress);
-  // console.log(`token deployed`)
+    const redeem = await MerkleRedeem.at(redeemAddress);
+    console.log(`Redeem contract deployed`);
 
-  const redeem = await MerkleRedeem.at(redeemAddress);
-  console.log(`redeem deployed`);
+    const allocationAmount = (approveAmount * 1e6).toString();
 
-  const allocationAmount = (approveAmount * 1e6).toString();
+    // await token.approve(redeem.address, allocationAmount);
+    // console.log(`Approve USDC done`);
+    console.log(`weekNum`, weekNum);
+    console.log(`allocationAmount`, allocationAmount);
+    console.log(`waiting now...`);
+    await redeem.seedAllocations(weekNum, root, allocationAmount);
+    console.log("seedAllocations done");
 
-  // await token.approve(redeem.address, allocationAmount);
-  // console.log(`Approve USDC done`);
-  console.log(`weekNum`, weekNum);
-  console.log(`root`, root);
-  console.log(`allocationAmount`, allocationAmount);
-  console.log(`waiting now...`);
-  await redeem.seedAllocations(weekNum, root, allocationAmount);
-  console.log("seedAllocations done");
-
-  callback();
+    callback();
+  } catch (error) {
+    callback(error);
+  }
 };
