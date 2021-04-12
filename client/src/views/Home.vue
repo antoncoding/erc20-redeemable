@@ -28,7 +28,7 @@
     </Container>
     <div v-if="Object.keys(lastDist).length > 0">
       <Container>
-        <h2 class="mb-3">Top 10 this week</h2>
+        <h2 class="mb-3">Top 10 this round</h2>
       </Container>
       <Container :slim="true">
         <Block :slim="true">

@@ -34,7 +34,7 @@
               >
                 <div class="flex-auto">
                   <a>
-                    Week {{ $n(_week(week)) }}
+                    Round {{ $n(_week(week)) }}
                     <!-- <Icon name="external-link" class="ml-1" /> -->
                   </a>
                 </div>
